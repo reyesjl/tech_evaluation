@@ -8,6 +8,7 @@ const productsRouter = require('./routes/products');
 // setup middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static('public'));
 
 // setup view engine
 app.set('view engine', 'ejs');

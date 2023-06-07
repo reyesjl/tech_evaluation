@@ -2,21 +2,46 @@ const express = require('express');
 const router = express.Router();
 
 // Fetch all products
-router.get('/', (req, res) => {
-    const products = [
-        {id: 1, title: 'fruit', price: '1.50', desc: 'fresh, sweet, vibrant'},
-        {id: 2, title: 'vegetables', price: '2.25', desc: 'hearty, crisp, fresh'},
-        {id: 3, title: 'sweets', price: '0.75', desc: 'sweet, hard, chocolate'}
-    ];
+router.get('/', async (req, res) => {
+    var pool = req.app.get('pool');
+    // try catch request flow
+    try { 
+        const query = 'SELECT * FROM products';
+        const result = await pool.query(query);
+        const products = result.rows;
 
-    res.render('products', { products });
+        res.render('products', { products: products });
+    } catch (error) {
+        // error encountered on backend
+        console.error('Failed to fetch products: ', error);
+        res.status(500);
+        res.render('500', error);
+    }
 });
 
 // Fetch a single product
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => { 
+    var pool = req.app.get('pool');
     const productId = req.params.id;
+    // try catch request flow
+    try {
+        const query = ('SELECT * FROM products WHERE id = ?', [productId]);
+        const result = await pool.query(query);
+        const product = result.row;
+    } catch (error) {
+        // error encountered on backend
+        console.error('Failed to fetch poduct by Id: ' + productId)
+    }
 
-    res.send(`Get product with ID ${productId}`);
+    const query = 'SELECT * FROM products WHERE id = ?'
+    const product = {
+        id: 1,
+        title: 'GTX 980 Ti',
+        descr: 'absolute unit of a card. in box. never used, only for mining crypto.',
+        price: 150.00,
+    }
+    console.log('DB.GET_PRODUCT(' + productId + ')');
+    res.render('products', { myproduct: product});
 });
 
 // Create a new product 

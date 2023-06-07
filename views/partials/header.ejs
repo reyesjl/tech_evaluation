@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- template contains title for each page -->
+        <title>Products API Demo</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">             
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    </head>
+    <body class="container">
+
+        <!-- Title and Primary buttons to fetchAll() and fetchById -->
+        <div class="px-4 py-5 my-5 text-center">
+            <img class="d-block mx-auto mb-4" src="https://cdn.dribbble.com/userupload/7215071/file/original-e2c2d7856bdd52764e6a915c3fe428d5.jpg?compress=1&resize=1504x1128" alt="" width="72" height="57">
+            <h1 class="display-5 fw-bold text-body-emphasis">Products API Demo</h1>
+
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Access to a small postgres database - try modifying a product!</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <!-- Trigger a search box to appear with a search button. -->
+                    <button type="button" class="btn btn-dark btn-lg px-4 gap-3">FetchAll()</button>
+
+                    <!-- Trigger a input form to appear with input for a new product. -->
+                    <button type="button" class="btn btn-warning btn-lg px-4 gap-3">CreateProduct()</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- page content -->

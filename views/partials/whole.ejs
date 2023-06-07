@@ -18,7 +18,7 @@
                 <p class="lead mb-4">Access to a small postgres database - try modifying a product!</p>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                     <!-- Trigger a search box to appear with a search button. -->
-                    <button type="button" class="btn btn-warning btn-lg px-4 gap-3">FetchAll()</button>
+                    <button type="button" class="btn btn-warning btn-lg px-4 gap-3" id="fetchAllButton">FetchAll()</button>
 
                     <!-- Trigger a input form to appear with input for a new product. -->
                     <button type="button" class="btn btn-dark btn-lg px-4 gap-3" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop">AddProduct()</button>
@@ -26,10 +26,32 @@
             </div>
         </div>
 
+        <!-- Products Table for viewing Products and their meta-data -->
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Price</th>
+                <th scope="col">Description</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>id</th>
+                <td>title</td>
+                <td>price</td>
+                <td>description</td>
+                <td> <a href="#" id="" class="link-secondary">edit</a> | <a href="#" class="link-danger">delt</a> </td>
+              </tr> 
+            </tbody>
+        </table>
+
         <!-- Off screen elements -->
-        <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+        <div class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="staticBackdropLabel">/AddProduct(:id)</h5>
+                <h5 class="offcanvas-title" id="staticBackdropLabel">/AddProduct</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -50,5 +72,5 @@
                 </form>
             </div>
         </div>
-
-        <!-- page content -->
+        
+        <!-- Products table if products exists -->

@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
         const result = await pool.query(query);
         const products = result.rows;
 
-        res.render('products', { products: products });
+        res.render('index', { products: products });
     } catch (error) {
         // error encountered on backend
         console.error('Failed to fetch products: ', error);

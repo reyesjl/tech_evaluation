@@ -14,17 +14,12 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.set('pool', pool);
 
-// routes for root /api
+// root routes
 app.get("/", (req, res) => {
     res.render("index");
 });
 
-// route to /api
-app.get("/api", (req, res) => {
-    res.render("api");
-});
-
-// route for /api/products
+// route handler all product related requests 
 app.use('/api/products', productsRouter);
 
 // start server

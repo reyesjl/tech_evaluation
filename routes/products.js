@@ -14,8 +14,7 @@ router.get('/', async (req, res) => {
     } catch (error) {
         // error encountered on backend
         console.error('Failed to fetch products: ', error);
-        res.status(500);
-        res.render('500', error);
+        res.status(500).send();
     }
 });
 

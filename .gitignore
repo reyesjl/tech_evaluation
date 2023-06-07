@@ -11,6 +11,7 @@ dist/
 
 # Build folder
 /build
+.DS_store
 
 # Deps
 package-lock.json

@@ -7,7 +7,7 @@ async function handleFetchAllRequest() {
         const response = await axios.get('/api/products');
         const products = response.data;
 
-        // test it
+        // logz
         console.log(products);
     } catch (error) {
         // bad things occured... debug time -.-

@@ -1,0 +1,22 @@
+# Dirs
+node_modules/
+dist/
+
+# Environment vars
+.env
+.env.*
+
+# Editor files
+.vscode/
+
+# Build folder
+/build
+
+# Deps
+package-lock.json
+yarn.lock
+
+# Logs
+logs/
+*.log
+

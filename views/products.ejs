@@ -1,29 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Product API Demo</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">             
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <% extends  %>
 
-    </head>
-    <body>
-        <div class="px-4 py-5 my-5 text-center">
-            <img class="d-block mx-auto mb-4" src="https://cdn.dribbble.com/userupload/7215071/file/original-e2c2d7856bdd52764e6a915c3fe428d5.jpg?compress=1&resize=1504x1128" alt="" width="72" height="57">
-            <h1 class="display-5 fw-bold text-body-emphasis">Products API Demo</h1>
-
-            <div class="col-lg-6 mx-auto">
-              <p class="lead mb-4">Access to a small postgres database - try modifying a product!</p>
-              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <button type="button" class="btn btn-dark btn-lg px-4 gap-3">FetchAll()</button>
-                <button type="button" class="btn btn-primary btn-lg px-4">FetchById()</button>
-              </div>
-            </div>
-
+    <!-- User is requesting single object; server has found it -->
+    <% if (myproduct) { %>
+        <div class="col-lg-6 mx-auto">
+            <p><%= productObj.title %></p>
+            <p><%= productObj.descr %></p>
+            <p><%= productObj.price %></p>   
         </div>
         
+    <% } else { %>
+        <!-- if PRODUCTS EXISTS -->
+        <% if (products && products.length > 0) { %>
+        
         <!-- Products Table -->
-        <div class="col-lg-6 mx-auto">
+        <div class="col-lg-9 mx-auto">
         <table class="table">
             <thead>
                 <tr>
@@ -32,25 +22,29 @@
                     <th scope="col">Desc</th>
                     <th scope="col">Price</th>
                     <th scope="col">Actions</th>
-                    <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="table-row">
 
+                <!-- Display row for every record in DB -->
                 <% products.forEach(product => { %>
                 <tr>
                     <th scope="row"><%= product.id %></th>
                     <td><%= product.title %></td>
-                    <td><%= product.desc %></td>
+                    <td><%= product.descr %></td>
                     <td><%= product.price %></td>
-                    <td><a href="#">edit</a> | <a href="#">delete</a></td>
-                    <td></td>
+                    <td>
+                        <a href="#table-row">view</a> | 
+                        <a href="#table-row">edit</a> | 
+                        <a href="#table-row">delete</a>
+                    </td>
                 </tr>
+                
                 <% }); %>
             </tbody>
         </table>
         </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    </body>
-</html>
+        <% } else { %>
+            <div>such empty :(</div>
+        <% } %>
+    <% } %>

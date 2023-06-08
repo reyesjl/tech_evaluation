@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // turn on for console loggs on the server side
-const log = true;
+const log = false;
 
 // HOME FOR ROUTE ROOT '/api/products' CRUD operations are supported as specified below...
 
@@ -86,8 +86,6 @@ router.get('/:id', async (req, res) => {
         console.error("Error getting product: " + error);
         res.status(500).json({error: 'Failed to get product: ' + productId}).send();
     }
-
-    res.render('products', { myproduct: product});
 });
 
 // Delete a product
@@ -115,12 +113,27 @@ router.delete('/:id', async (req, res) => {
 });
 
 // Update a product
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
+    var pool = req.app.get('pool');
     const productId = req.params.id;
-    const productTitle = req.params.title;
-    const productsPrice = req.params.price;
-    const productsDesc = req.params.desc;
+    const { title, price, description } = req.body;
 
+    try {
+        const query = 'UPDATE products SET title = $1, price = $2, descr = $3 WHERE id = $4';
+        const values = [title, price, description, productId];
+        await pool.query(query, values);
+
+        // DEBUG
+        if (log) {
+            console.log('[LOGGER SAYS]: DATABASE UPDATED A RECORD.');
+        }
+
+        res.status(200).json({ message: 'Record updated successfully' });
+    } catch (error) {
+        // handle error
+        console.error("Error updating product: " + error);
+        res.status(500).json({ error: 'Failed to update product.' });
+    }
     res.send(`Update product with ID ${productId}`);
 });
 

@@ -26,5 +26,5 @@ app.use('/api/products', productsRouter);
 // start server
 const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`It lives on localhost:${PORT}`);
+    console.log(`It's alive!!! http://yourlocalmachine:${PORT}`);
 });

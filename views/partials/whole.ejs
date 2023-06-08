@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <!-- Products Table for viewing Products and their meta-data -->
+        <!-- conditional products table rendering here -->
         <table class="table table-striped">
             <thead>
               <tr>
@@ -37,14 +37,9 @@
                 <th scope="col">Actions</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th>id</th>
-                <td>title</td>
-                <td>price</td>
-                <td>description</td>
-                <td> <a href="#" id="" class="link-secondary">edit</a> | <a href="#" class="link-danger">delt</a> </td>
-              </tr> 
+            <tbody id="table-body">
+                <!-- innerHTML rendered in backend -->
+                <!-- see renderTable() -->
             </tbody>
         </table>
 
@@ -61,14 +56,14 @@
                         <input type="text" class="form-control" id="title" name="title" placeholder="product title..." required />
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        <input type="textarea" class="form-control" id="descr" name="descr" placeholder="product description..." required />
-                    </div>
-                    <div class="mb-3">
                         <label for="price" class="form-label">Price</label>
                         <input type="number" class="form-control" id="price" name="price" placeholder="product price..." required />
                     </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="textarea" class="form-control" id="descr" name="descr" placeholder="product description..." required />
+                    </div>     
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="offcanvas" id="addProductButton">Save</button>
                 </form>
             </div>
         </div>
